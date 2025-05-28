@@ -39,9 +39,9 @@ export default async function handler(req, res) {
     const data = await resposta.json();
     const respostaFinal = data.choices?.[0]?.message?.content?.trim();
 
-    res.status(200).json({ resposta: respostaFinal || 'Fiquei sem palavras, viado' });
+    res.status(200).json({ resposta: respostaFinal || 'vixi nem sei, viado' });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ resposta: 'Erro no botzudo, carai' });
+    res.status(500).json({ resposta: 'deu erro desgraça, chama a moderaçao ae porra' });
   }
 }
