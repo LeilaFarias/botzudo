@@ -2,6 +2,8 @@ import express from 'express';
 import fetch from 'node-fetch';
 import cors from 'cors';
 import 'dotenv/config';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -49,6 +51,11 @@ app.get('/api/botzudo', async (req, res) => {
     res.status(500).send('Deu ruim aqui, otário, chama a merda da moderação que ta dando erro nessa porra');
   }
 });
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use(express.static(path.join(__dirname, '..', 'page')));
 
 app.listen(PORT, () => {
   console.log(`🔥 Botzudo rodando em http://localhost:${PORT}`);

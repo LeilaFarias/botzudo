@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Botzudo</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 2rem;
+      background: #111;
+      color: #eee;
+    }
+    input, button {
+      padding: 0.5rem;
+      margin: 0.5rem 0;
+      font-size: 1rem;
+    }
+    input {
+      width: 300px;
+    }
+    .chat-box {
+      background: #222;
+      padding: 1rem;
+      margin-top: 1rem;
+      border-radius: 8px;
+      max-width: 500px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🤖 Botzudo</h1>
+
+  <form id="form">
+    <input id="msg" type="text" placeholder="Digite sua pergunta" autocomplete="off" />
+    <button type="submit">Enviar</button>
+  </form>
+
+  <div class="chat-box" id="resposta">Resposta aparecerá aqui</div>
+
+  <script>
+    const form = document.getElementById('form');
+    const msgInput = document.getElementById('msg');
+    const resposta = document.getElementById('resposta');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const message = msgInput.value;
+
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message }),
+      });
+
+      const data = await res.json();
+      resposta.textContent = 'Botzudo: ' + data.resposta;
+    });
+  </script>
+</body>
+</html>
