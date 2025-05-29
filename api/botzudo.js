@@ -28,7 +28,7 @@ export default async function handler(req, res) {
             content: pergunta,
           },
         ],
-        max_tokens: 40,
+        max_tokens: 70,
         temperature: 0.9,
         top_p: 0.95,
         frequency_penalty: 0,
