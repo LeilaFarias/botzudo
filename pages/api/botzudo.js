@@ -1,11 +1,11 @@
 export default async function handler(req, res) {
   if (req.method !== 'GET') {
-    return res.status(405).json({ resposta: 'Só aceito GET, anta.' });
+    return res.status(405).json('Só aceito GET, anta.');
   }
 
   const pergunta = req.query.q;
   if (!pergunta) {
-    return res.status(400).json({ resposta: 'Manda uma pergunta, porra.' });
+    return res.status(400).json('Manda uma pergunta, porra.');
   }
 
   try {
@@ -38,10 +38,11 @@ export default async function handler(req, res) {
 
     const data = await resposta.json();
     const respostaFinal = data.choices?.[0]?.message?.content?.trim();
+    console.log('Resposta da OpenRouter:', JSON.stringify(data, null, 2));
 
-    res.status(200).json({ resposta: respostaFinal || 'vixi nem sei, viado' });
+    res.status(200).send(respostaFinal || 'vixi nem sei, viado');
   } catch (error) {
     console.error(error);
-    res.status(500).json({ resposta: 'deu erro desgraça, chama a moderaçao ae porra' });
+    res.status(500).json('deu erro desgraça, chama a moderaçao ae porra' );
   }
 }
