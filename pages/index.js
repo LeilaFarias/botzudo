@@ -30,33 +30,31 @@ return (
   >
     <h1>🤖 Botzudo</h1>
 
-    <form onSubmit={handleSubmit}>
-      <input
+    <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', margin: '0.5rem 0' }}>
+    <input
         type="text"
         value={mensagem}
         onChange={(e) => setMensagem(e.target.value)}
         placeholder="Digite sua pergunta"
         style={{
-          padding: '0.5rem',
-          margin: '0.5rem 0',
-          fontSize: '1rem',
-          width: '300px',
+        padding: '0.5rem',
+        fontSize: '1rem',
+        width: '300px',
         }}
-      />
-      <br />
-      <button
+    />
+    <button
         type="submit"
         style={{
-          padding: '0.5rem',
-          fontSize: '1rem',
-          backgroundColor: '#444',
-          color: '#fff',
-          border: 'none',
-          cursor: 'pointer',
+        padding: '0.5rem 1rem',
+        fontSize: '1rem',
+        backgroundColor: '#444',
+        color: '#fff',
+        border: 'none',
+        cursor: 'pointer',
         }}
-      >
+    >
         Enviar
-      </button>
+    </button>
     </form>
 
     <div
