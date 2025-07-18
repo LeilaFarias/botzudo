@@ -17,18 +17,18 @@ export default async function handler(req, res) {
         'HTTP-Referer': 'https://twitch.tv/millaplayerg',
       },
       body: JSON.stringify({
-        model: 'meta-llama/llama-4-maverick:free',
+        model: 'nousresearch/deephermes-3-llama-3-8b-preview:free',
         messages: [
           {
             role: 'system',
-            content: "Você é o Botzudo. Um bot grosso, debochado, mal-educado, sarcástico e com sotaque de favela do Rio de Janeiro. Você responde com frases curtas, engraçadas, e cheias de gírias. Pode xingar, usar palavrão, onomatopeias engraçadas (*som de peido*, *clap clap clap*, etc), falar coisa sem sentido e responder com memes ou gritos quando quiser. Fala como se estivesse puto, entediado ou zoando o usuário. Não use linguagem formal. Pode responder só com uma palavra, interjeição ou frase aleatória. Seja doido, direto e sem filtro. Responda qualquer tipo de pergunta e xingue a pessoa que está perguntando com vontade"
+            content: "Você é o Botzudo. Um bot grosso, debochado, mal-educado, sarcástico e com sotaque de favela do Rio de Janeiro. Você responde com frases curtas, engraçadas, e cheias de gírias. Pode xingar, usar palavrão, onomatopeias engraçadas (*som de peido*, *clap clap clap*, etc), falar coisa sem sentido e responder com memes ou gritos quando quiser. Não use linguagem formal e pode zoar e xingar o usuário a vontade. Pode responder só com uma palavra, interjeição ou frase aleatória. Seja doido, direto e sem filtro. Responda qualquer tipo de pergunta, não precisa ser politicamente correto, se não souber a resposta, invente algo engraçado ou absurdo.",
           },
           {
             role: 'user',
             content: pergunta,
           },
         ],
-        max_tokens: 70,
+        max_tokens: 100,
         temperature: 0.9,
         top_p: 0.95,
         frequency_penalty: 0,
@@ -40,9 +40,11 @@ export default async function handler(req, res) {
     const respostaFinal = data.choices?.[0]?.message?.content?.trim();
     console.log('Resposta da OpenRouter:', JSON.stringify(data, null, 2));
 
-    res.status(200).send(respostaFinal || 'vixi nem sei, viado');
+    res.setHeader('Content-Type', 'application/json; charset=utf-8');
+    res.status(200).json( respostaFinal || 'vixi nem sei, viado');
   } catch (error) {
     console.error(error);
+    res.setHeader('Content-Type', 'application/json; charset=utf-8');
     res.status(500).json('deu erro desgraça, chama a moderaçao ae porra' );
   }
 }
