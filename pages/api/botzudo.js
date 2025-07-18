@@ -17,7 +17,7 @@ export default async function handler(req, res) {
         'HTTP-Referer': 'https://twitch.tv/millaplayerg',
       },
       body: JSON.stringify({
-        model: 'moonshotai/kimi-k2:free',
+        model: 'google/gemma-3n-e2b-it:free',
         messages: [
           {
             role: 'system',
