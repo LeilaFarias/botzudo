@@ -17,7 +17,7 @@ export default async function handler(req, res) {
         'HTTP-Referer': 'https://twitch.tv/millaplayerg',
       },
       body: JSON.stringify({
-        model: 'google/gemma-3n-e2b-it:free',
+        model: 'meta-llama/llama-4-maverick:free',
         messages: [
           {
             role: 'system',
